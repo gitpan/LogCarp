@@ -39,6 +39,11 @@ To install the CGI::LogCarp module for Perl 5, proceed as follows:
 
 See the file 'README' for general notes on CGI::LogCarp.
 
+Note: The tests currently fail when testing croak, die, and confess for
+obvious reasons. Don't worry too much about that. In the ./t directory,
+there will be the output of redirected error, log, and debug streams.
+You can check what you get against my versions in the ./t/check directory.
+
 Michael King
 <mike808@mo.net>
 http://walden.mo.net/~mike808

@@ -57,7 +57,9 @@ Online documentation of these modules can be found at:
 
 	http://walden.mo.net/~mike808/LogCarp
 
-Version 1.05 released to CPAN: Tue Jan 13 01:55:56 CST 1998
+First released to CPAN: Tue Jan 13 01:55:56 CST 1998
+
+Note: The current version of LogCarp replaces the Symbol.pm module.
 
 Michael King
 <mike808@mo.net>
