@@ -1,0 +1,32 @@
+This is the LogCarp module for perl,
+providing additional streams for logging and debugging.
+
+To install these modules, cd to the directory that this README file is
+in and type the following:
+
+	perl Makefile.PL
+	make
+	make install
+
+Documentation for these modules is part of the files themselves using
+the pod (Plain Old Documentation) format, and can be read using the
+pod2man and pod2html programs that come with perl.  To convert
+them into manual page format, type something like the following:
+
+	pod2man LogCarp.pm > LogCarp.man
+
+To convert it into HTML format, type:
+
+	pod2html LogCarp.pm
+
+(pod2html creates an HTML file named LogCarp.pm.html)
+
+Online documentation of these modules can be found at:
+
+	http://walden.mo.net/~mike808/LogCarp
+
+Version 1.01 released to CPAN: Mon Sep 15 09:04:00 CDT 1997
+
+Michael King
+<mike808@mo.net>
+http://walden.mo.net/~mike808

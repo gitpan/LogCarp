@@ -1,0 +1,32 @@
+Things still left to do:
+
+Volunteers are wanted to help address the following issues.
+If you would like to make a contribution, send me an email.
+
+Michael King
+<mike808@mo.net>
+http://walden.mo.net/~mike808
+
+Major Issues
+------------
+
+- None so far
+
+Major Wishes
+------------
+
+- None so far
+
+Minor Issues or Wishes
+----------------------
+
+- Unfortunately the obvious choice for sending a message to the STDLOG stream
+'log' has already been taken, and conflicts with the math function of the same
+name. So, I've decided to use 'logmsg' instead, but I'm open to other ideas.
+
+- Locks are fine grained
+Do we need a higher level lock/unlock around a block of messages?
+e.g.: lock \*STDLOG; iterated_log_writes @lines; unlock \*STDLOG;
+
+- The locking code could probably be made more portable.
+
