@@ -6,10 +6,18 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
- 
-    You should have received a copy of the GNU General Public License
-    along with this software. If not, write to the Free Software
-    Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+	Please send any reports of problems or bugs to mike808@mo.net.
+	I wouldn't mind a short note to know that you're using this.
+	Suggestions and knowing how many others are using this will help
+	promote its upkeep.
+
+	This package is copyright (c) 1997 by Michael King (mike808@mo.net)
+	and is made available to the Perl public under terms of the
+	Artistic License used to cover Perl itself.
+	See the file Artistic in the distribution  of Perl 5.002 or
+	later for details of copy and distribution terms.
+
 ----------------------------------------------------------------------
 
 To install the LogCarp module for Perl 5, proceed as follows:
