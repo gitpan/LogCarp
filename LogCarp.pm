@@ -1,9 +1,9 @@
 #!/usr/local/bin/perl -w
 #
-# SCCS INFO: @(#) LogCarp.pm 1.01 97/09/15
-# $Id: LogCarp.pm,v 1.01 1997/09/15 09:04:00 mak Exp $
+# SCCS INFO: @(#) LogCarp.pm 1.02 98/01/04
+# $Id: LogCarp.pm,v 1.02 1998/01/04 19:03:25 mak Exp $
 #
-# Copyright (C) 1997 Michael King (mike808@mo.net)
+# Copyright (C) 1997,1998 Michael King (mike808@mo.net)
 # Fenton, MO USA.
 #
 # This module is free software; you can redistribute it and/or
@@ -316,12 +316,13 @@ Carp, CGI::Carp
 
  LogCarp.pm
  v1.01 09/15/97 09:04:00 mak
+ v1.02 01/04/98 19:03:25 mak
 
 =head1 MODIFICATIONS
 
 =head1 COPYRIGHT
 
- Copyright (C) 1997 Michael King (mike808@mo.net)
+ Copyright (C) 1997,1998 Michael King (mike808@mo.net)
  Fenton, MO USA.
 
  This module is free software; you can redistribute it and/or
@@ -377,7 +378,7 @@ use FileHandle;
 # Local packages
 
 # Package Version
-$VERSION = "1.01";
+$VERSION = "1.02";
 sub VERSION () { $VERSION; };
 
 # Constants
