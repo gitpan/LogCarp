@@ -1,4 +1,4 @@
-Things still left to do:
+CGI::LogCarp - Things still left to do:
 
 Volunteers are wanted to help address the following issues.
 If you would like to make a contribution, send me an email.
@@ -30,3 +30,8 @@ e.g.: lock \*STDLOG; iterated_log_writes @lines; unlock \*STDLOG;
 
 - The locking code could probably be made more portable.
 
+- Flesh out the test code.
+
+- Split or move documentation to end of source to speed parsing.
+
+- Stack signal handlers or don't care and override anyway?

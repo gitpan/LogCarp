@@ -1,7 +1,7 @@
-LogCarp
+CGI::LogCarp
 
-This is the LogCarp module for perl, providing additional streams for logging
-and debugging.
+This is the CGI::LogCarp module for perl, providing additional streams for
+logging and debugging.
 
 The reason I wrote the module was so that my scripts could have separate and
 independant streams for output for activity-based logging and for debug
@@ -40,12 +40,14 @@ in and type the following:
 
 Documentation for these modules is part of the files themselves using
 the pod (Plain Old Documentation) format, and can be read using the
-pod2man and pod2html programs that come with perl.  To convert
-them into manual page format, type something like the following:
+perldoc program that comes with perl.
+
+To manually convert them into manual page format, type something like
+the following:
 
 	pod2man LogCarp.pm > LogCarp.man
 
-To convert it into HTML format, type:
+To manually convert them into HTML format, type:
 
 	pod2html LogCarp.pm
 
@@ -55,7 +57,7 @@ Online documentation of these modules can be found at:
 
 	http://walden.mo.net/~mike808/LogCarp
 
-Version 1.03 released to CPAN: Sun Jan  4 19:03:25 CST 1998
+Version 1.05 released to CPAN: Tue Jan 13 01:55:56 CST 1998
 
 Michael King
 <mike808@mo.net>

@@ -20,9 +20,9 @@
 
 ----------------------------------------------------------------------
 
-To install the LogCarp module for Perl 5, proceed as follows:
+To install the CGI::LogCarp module for Perl 5, proceed as follows:
 
-1. Unpack the LogCarp source archive into a suitable directory with
+1. Unpack the source archive into a suitable directory with
 
 	gunzip -cf LogCarp-x.xx.tar.gz | tar xvf -
 
@@ -37,7 +37,7 @@ To install the LogCarp module for Perl 5, proceed as follows:
 	make test
 	make install
 
-See the file 'README' for general notes on LogCarp.
+See the file 'README' for general notes on CGI::LogCarp.
 
 Michael King
 <mike808@mo.net>

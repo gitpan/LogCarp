@@ -1,7 +1,7 @@
-#!/usr/local/bin/perl -w
-#
-# SCCS INFO: @(#) LogCarp.pm 1.04 98/01/06
-# $Id: LogCarp.pm,v 1.04 1998/01/06 20:52:19 mak Exp $
+package CGI::LogCarp;
+
+# SCCS INFO: @(#) LogCarp.pm 1.05 98/01/13
+# $Id: LogCarp.pm,v 1.05 1998/01/13 mak Exp $
 #
 # Copyright (C) 1997,1998 Michael King (mike808@mo.net)
 # Fenton, MO USA.
@@ -11,9 +11,9 @@
 
 =head1 NAME
 
-LogCarp - Error, log and debug streams, httpd style format
+CGI::LogCarp - Error, log and debug streams, httpd style format
 
-LogCarp redefines the STDERR stream and the defines the STDBUG and STDLOG
+CGI::LogCarp redefines the STDERR stream and the defines the STDBUG and STDLOG
 streams in such a way that all messages are formatted similar to an HTTPD
 error log.
 Methods are defined for directing messages to the STDBUG and STDLOG streams.
@@ -21,9 +21,9 @@ Each stream can be directed to its own location independent of the others.
 
 =head1 SYNOPSIS
 
-    use LogCarp;
+    use CGI::LogCarp;
 
-    print "LogCarp version: ", LogCarp::VERSION;
+    print "CGI::LogCarp version: ", CGI::LogCarp::VERSION;
     DEBUGLEVEL 2;
 
     croak "We're outta here!";
@@ -48,7 +48,7 @@ Each stream can be directed to its own location independent of the others.
 
 =head1 DESCRIPTION
 
-LogCarp.pm is a Perl5 package defining methods for directing
+CGI::LogCarp is a Perl5 package defining methods for directing
 the existing STDERR stream as well as creating and directing
 two new messaging streams, STDBUG and STDLOG.
 
@@ -65,7 +65,7 @@ Replace the usual
 
 with
 
-    use LogCarp;
+    use CGI::LogCarp;
 
 And the standard C<warn()>, C<die()>, C<croak()>, C<confess()>
 and C<carp()> calls will automagically be replaced with methods
@@ -158,7 +158,7 @@ It should be called in a C<BEGIN> block at the top of the application so that
 compiler errors will be caught. Example:
 
     BEGIN {
-    use LogCarp;
+    use CGI::LogCarp;
     open \*LOG, ">>/usr/local/cgi-logs/mycgi-log"
         or die "Unable to open mycgi-log: $!\n";
     carpout \*LOG;
@@ -171,7 +171,7 @@ If you want to send errors to the browser, give C<carpout()> a reference
 to STDOUT:
 
    BEGIN {
-     use LogCarp;
+     use CGI::LogCarp;
      carpout \*STDOUT;
    }
 
@@ -200,7 +200,7 @@ accepted as well:
 Use of C<carpout()> is not great for performance, so it is recommended
 for debugging purposes or for moderate-use applications. A future
 version of this module may delay redirecting STDERR until one of the
-LogCarp methods is called to prevent the performance hit.
+CGI::LogCarp methods is called to prevent the performance hit.
 
 =head1 EXPORTED PACKAGE METHODS
 
@@ -314,11 +314,12 @@ Carp, CGI::Carp
 
 =head1 HISTORY
 
- LogCarp.pm
- v1.01 09/15/97 09:04:00 mak
- v1.02 01/04/98 19:03:25 mak
- v1.03 01/04/98 19:03:25 mak
- v1.04 01/06/98 20:52:19 mak
+ CGI::LogCarp.pm
+ v1.01 09/15/97 mak
+ v1.02 01/04/98 mak
+ v1.03 01/04/98 mak
+ v1.04 01/06/98 mak
+ v1.05 01/13/98 mak
 
 =head1 MODIFICATIONS
 
@@ -352,7 +353,7 @@ require 5.004;
 use strict;
 
 # The package name
-package LogCarp;
+package CGI::LogCarp;
 
 # Define external interface
 use vars qw( $VERSION @ISA @EXPORT @EXPORT_OK );
@@ -385,7 +386,7 @@ use FileHandle;
 # Local packages
 
 # Package Version
-$VERSION = "1.04";
+$VERSION = "1.05";
 sub VERSION () { $VERSION; };
 
 # Constants
@@ -402,33 +403,33 @@ BEGIN {
     open \*main::STDLOG,">&STDERR";
 
     # Initialize the debug level (OFF)
-    $LogCarp::DEBUGLEVEL = 0;
+    $CGI::LogCarp::DEBUGLEVEL = 0;
 
     # Initialize the log level (OFF)
-    $LogCarp::LOGLEVEL = 0;
+    $CGI::LogCarp::LOGLEVEL = 0;
 }
 
 # Grab Perl's signal handlers
 # Note: Do we want to stack ours on top of whatever was there?
-$main::SIG{'__WARN__'} = 'LogCarp::warn';
-$main::SIG{'__DIE__'}  = 'LogCarp::die';
+$main::SIG{'__WARN__'} = 'CGI::LogCarp::warn';
+$main::SIG{'__DIE__'}  = 'CGI::LogCarp::die';
 
 # Take over top-level definitions
-*main::logmsg = *main::logmsg = \&LogCarp::logmsg;
-*main::debug  = *main::debug  = \&LogCarp::debug;
-*main::trace  = *main::trace  = \&LogCarp::trace;
+*main::logmsg = *main::logmsg = \&CGI::LogCarp::logmsg;
+*main::debug  = *main::debug  = \&CGI::LogCarp::debug;
+*main::trace  = *main::trace  = \&CGI::LogCarp::trace;
 
 # Take over carp(), croak(), and confess()
 #
 # Avoid "subroutine redefined" warnings with this popular hack
 # mak - BTW, this fixes a problem when you pass Carp::croak and Carp::carp
-# a list of more than one parameter( shortmess uses $_[0] and not @_ );
+# a list ( shortmess uses $_[0] and not @_ ) like the documentation says;
 {
     local $^W=0;
 eval <<EOF;
-    sub confess { LogCarp::die(  Carp::longmess,  join("",@_) ); }
-    sub croak   { LogCarp::die(  Carp::shortmess, join("",@_) ); }
-    sub carp    { LogCarp::warn( Carp::shortmess, join("",@_) ); }
+    sub confess { CGI::LogCarp::die(  Carp::longmess,  join("",@_) ); }
+    sub croak   { CGI::LogCarp::die(  Carp::shortmess, join("",@_) ); }
+    sub carp    { CGI::LogCarp::warn( Carp::shortmess, join("",@_) ); }
 EOF
 }
 
@@ -497,12 +498,13 @@ sub DEBUGLEVEL (;$)
         $value = 2 if $value =~ m/^($TRACE)$/i;
 
         # Coerce to numeric - note scientific notation is OK
-        $LogCarp::DEBUGLEVEL = 0 + $value;
+        $CGI::LogCarp::DEBUGLEVEL = 0 + $value;
 
         # Also turn on logging if we are debugging
-        LOGLEVEL(1) if ($LogCarp::DEBUGLEVEL and not $LogCarp::LOGLEVEL);
+        LOGLEVEL(1) if ($CGI::LogCarp::DEBUGLEVEL
+			and not $CGI::LogCarp::LOGLEVEL);
     }
-    $LogCarp::DEBUGLEVEL;
+    $CGI::LogCarp::DEBUGLEVEL;
 }
 
 # --- END OF PAGE ---^L#- - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -543,9 +545,9 @@ sub LOGLEVEL (;$)
         $value = 1 if $value =~ m/^($YES)$/i;
 
         # Coerce to numeric - note scientific notation is OK
-        $LogCarp::LOGLEVEL = 0 + $value;
+        $CGI::LogCarp::LOGLEVEL = 0 + $value;
     }
-    $LogCarp::LOGLEVEL;
+    $CGI::LogCarp::LOGLEVEL;
 }
 
 # --- END OF PAGE ---^L#- - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -656,7 +658,7 @@ The message is sent to the STDBUG stream when DEBUGLEVEL > 0.
 
 sub debug (@)
 {
-    return unless LogCarp::DEBUGLEVEL() > 0;
+    return unless CGI::LogCarp::DEBUGLEVEL() > 0;
     my $message = join "", @_; # Flatten the list
     my ($file,$line) = id(1);
     $message .= " at $file line $line.\n" unless $message =~ /\n$/;
@@ -678,7 +680,7 @@ when DEBUGLEVEL is greater than one.
 
 sub trace (@)
 {
-    return unless LogCarp::DEBUGLEVEL() > 1;
+    return unless CGI::LogCarp::DEBUGLEVEL() > 1;
     my $message = join "", @_; # Flatten the list
     my ($file,$line) = id(1);
     $message .= " at $file line $line.\n" unless $message =~ /\n$/;
