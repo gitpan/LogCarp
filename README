@@ -30,6 +30,11 @@ of yet, so have at it.
 
 Michael King
 
+To see the latest changes to the module, see the 'Changes' file.
+
+To see how you can help make this a better module, see the 'TODO' file.
+
+To see any special installation notes, see the 'INSTALL' file.
 
 To install these modules, cd to the directory that this README file is
 in and type the following:
@@ -58,8 +63,6 @@ Online documentation of these modules can be found at:
 	http://walden.mo.net/~mike808/LogCarp
 
 First released to CPAN: Tue Jan 13 01:55:56 CST 1998
-
-Note: The current version of LogCarp replaces the Symbol.pm module.
 
 Michael King
 <mike808@mo.net>

@@ -1,11 +1,10 @@
-CGI/LogCarp.pm
 Changes
 INSTALL
+LogCarp.pm
 MANIFEST
 Makefile.PL
 README
 TODO
-lib/Symbol.pm
 t/01load.t
 t/02err.t
 t/03debug.t

@@ -1,5 +1,14 @@
 Revision history for Perl extension CGI::LogCarp.
 
+Note:
+There were some MAJOR changes between 1.05 and 1.11.
+Namely, the syntax of the 'use' statement has change significantly.
+you should now 'use CGI::LogCarp qw( :STDLOG );' to get the STDLOG features,
+and :STDBUG for STDBUG features (debugmsg debugmsgout DEBUGLEVEL etc.).
+
+I'm sorry, but I had to break earlier code in order to do this module
+the way I am doing it now.
+
 1.01 Mon Sep 15 09:04:00 CDT 1997
   - original version; created by h2xs 1.18
 
@@ -28,3 +37,7 @@ Revision history for Perl extension CGI::LogCarp.
   - (i.e. always qualify to pkg main)
   - tests written. testing croak, die and friends fails.
   - custom error messages implemented
+
+1.12 Thu Aug 13 23:38:02 CDT 1998
+  - some minor fixes
+

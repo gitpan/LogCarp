@@ -31,7 +31,14 @@ e.g.: lock \*STDLOG; iterated_log_writes @lines; unlock \*STDLOG;
 - The locking code could probably be made more portable.
 
 - Flesh out the test code.
+I've got a few done, but want to test die and exercise all methods and streams in combination.
 
 - Split or move documentation to end of source to speed parsing.
+I really don't like the idea of the docs and the code being separate,
+but once this stabilizes some more, I'll look at this again.
 
 - Stack signal handlers or don't care and override anyway?
+
+- See about how to make STDBUG and STDLOG truly globals like STDERR and STDOUT.
+Currently trying to fake some of this with Symbol.pm, but comments indicate
+this is not the ripest fruit on the tree.
